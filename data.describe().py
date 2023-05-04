@@ -17,16 +17,20 @@ with c2:
 
     st.info("""
 Признаки
-1. time_left - оставшееся время
-1. ct_score, t_score - счет
-1. ct_health, t_health - количество здоровья
-1. ct_armor, t_armor - количество армора
-1. ct_money	t_money - общее количество денег
-1. ct_players_alive, t_players_alive - количество живых
-1. map - название игровой карты
-1. bomb_planted - стоит ли бомба (да, нет)
+- time_left - оставшееся время
+- ct_score, t_score - счет
+- ct_health, t_health - количество здоровья
+- ct_armor, t_armor - количество армора
+- ct_money	t_money - общее количество денег
+- ct_players_alive, t_players_alive - количество живых
+- map - название игровой карты
+- bomb_planted - стоит ли бомба (да, нет)
 """)
 with c3:
-    st.info("", icon="🧠")
+    st.info("""
+   Особенности предобработки данных:
+- Один категориальный признак - (one-hot encoding)
+- Дизбаланс классов - (under-sampling | over-sampling)
+- Разброс числовых данных (standart scaling)
 
-    # time_left	ct_score	t_score	map	bomb_planted	ct_health	t_health	ct_armor	t_armor	ct_money	t_money	ct_helmets	t_helmets	ct_defuse_kits	ct_players_alive
+    """)
