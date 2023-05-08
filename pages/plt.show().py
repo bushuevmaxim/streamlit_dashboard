@@ -5,13 +5,13 @@ import matplotlib.pyplot as plt
 
 data_mod = pd.read_csv("data/csgotask_m.csv")
 data = pd.read_csv("data/csgo_task.csv")
-
 data.dropna(inplace=True)
+print(data.columns)
 if 'index' not in st.session_state:
     st.session_state.index = 0
 
 if 'features' not in st.session_state:
-    st.session_state.features = tuple(data_mod.columns)
+    st.session_state.features = tuple(data.columns)
 st.title("Зависимость признаков от целевого признака")
 
 st.selectbox("Выберете признак для сравнения с целевым", options=st.session_state.features,
