@@ -1,3 +1,4 @@
+import pandas as pd
 import streamlit as st
 from PIL import Image
 
@@ -34,3 +35,4 @@ with c3:
 - Разброс числовых данных (standart scaling)
 
     """)
+
