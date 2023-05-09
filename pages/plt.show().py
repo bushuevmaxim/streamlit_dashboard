@@ -3,10 +3,7 @@ import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
 
-data_mod = pd.read_csv("data/csgotask_m.csv")
-data = pd.read_csv("data/csgo_task.csv")
-data.dropna(inplace=True)
-
+data = st.session_state["data"]
 if 'index' not in st.session_state:
     st.session_state.index = 0
 
@@ -18,6 +15,7 @@ st.selectbox("Выберете признак для сравнения с це�
              index=st.session_state.index, key='feature')
 st.session_state.index = st.session_state.features.index(
     st.session_state.feature)
+
 
 plot, scatter = st.columns(2)
 x = data[st.session_state.feature]
@@ -37,17 +35,15 @@ with scatter:
     plt.ylabel("bomb_planted")
     st.pyplot(fig)
 
+
 triplot, stem = st.columns(2)
-
 with triplot:
-
     fig, ax = plt.subplots()
     plt.xlabel(st.session_state.feature)
     plt.ylabel("bomb_planted")
     ax.triplot(x, y,)
     st.pyplot(fig)
 with stem:
-
     fig, ax = plt.subplots()
     plt.xlabel(st.session_state.feature)
     plt.ylabel("bomb_planted")

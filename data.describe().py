@@ -2,7 +2,8 @@ import pandas as pd
 import streamlit as st
 from PIL import Image
 
-st.set_page_config(page_title='Информация о датасете', page_icon=':bar_chart:', layout='wide')
+st.set_page_config(page_title='Информация о датасете',
+                   page_icon=':bar_chart:', layout='wide')
 
 st.title("Информация о датасете")
 st.sidebar.title("")
@@ -36,3 +37,6 @@ with c3:
 
     """)
 
+data = pd.read_csv("data/csgo_task.csv")
+data.dropna(inplace=True)
+st.session_state["data"] = data
