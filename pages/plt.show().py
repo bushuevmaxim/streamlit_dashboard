@@ -37,40 +37,26 @@ with scatter:
     plt.ylabel("bomb_planted")
     st.pyplot(fig)
 
+triplot, stem = st.columns(2)
 
-if 'maps' not in st.session_state:
-    st.session_state.maps = data["map"].unique()
+with triplot:
 
+    fig, ax = plt.subplots()
+    plt.xlabel(st.session_state.feature)
+    plt.ylabel("bomb_planted")
+    ax.triplot(x, y,)
+    st.pyplot(fig)
+with stem:
 
-current_maps = st.multiselect("",
-                              st.session_state.maps, [], help="Выберете карту")
+    fig, ax = plt.subplots()
+    plt.xlabel(st.session_state.feature)
+    plt.ylabel("bomb_planted")
+    ax.stem(x, y)
+    st.pyplot(fig)
+# maps = data.groupby(["map"])["map"].count()
 
-
-hist, pie = st.columns(2)
-
-
-# maps = dict((i, mapa) for i, mapa in enumerate(data["map"].unique()) if mapa in )
-# maps = dict((mapa, data) for mapa in )
-maps = data.groupby(["map"])["map"].count()
-# maps_del = maps.drop(current_maps, axis=0)
-# print()
-# x = maps.to_frame() - maps_del.to_frame()
-# print(x)
-# y = data.groupby(["map", "bomb_planted"]).count()
-
-# plot
-# fig, ax = plt.subplots()
-
-# ax.bar(x, y, width=1, edgecolor="white", linewidth=0.7)
-# # x = data[current_maps]
-
-# fig, ax = plt.subplots(figsize=(5, 5))
-# ax.bar(maps, width=1, edgecolor="white", linewidth=0.7, height=1)
+# fig, ax = plt.subplots(figsize=(10, 5))
+# ax.pie(maps, radius=3, center=(4, 4), labels=maps.keys(),
+#        wedgeprops={"linewidth": 1, "edgecolor": "white"}, frame=True)
+# plt.legend()
 # st.pyplot(fig)
-
-
-fig, ax = plt.subplots(figsize=(10, 5))
-ax.pie(maps, radius=3, center=(4, 4), labels=maps.keys(),
-       wedgeprops={"linewidth": 1, "edgecolor": "white"}, frame=True)
-plt.legend()
-st.pyplot(fig)
