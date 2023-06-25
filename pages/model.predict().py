@@ -2,6 +2,7 @@ import joblib
 import numpy as np
 import streamlit as st
 import pandas as pd
+st.set_page_config(layout="wide")
 st.title("Получение предсказания")
 left, right = st.columns(2)
 

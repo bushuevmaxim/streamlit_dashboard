@@ -3,7 +3,7 @@ import streamlit as st
 from PIL import Image
 
 st.set_page_config(page_title='Информация о датасете',
-                   page_icon=':bar_chart:', layout='wide')
+                   page_icon=':bar_chart:', layout="wide")
 
 st.title("Информация о датасете")
 st.sidebar.title("")
