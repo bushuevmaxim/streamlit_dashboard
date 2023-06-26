@@ -12,7 +12,8 @@ if 'indextwo' not in st.session_state:
     st.session_state.indextwo = 0
 
 if 'featuresone' not in st.session_state:
-    st.session_state.featuresone = tuple(data.drop([""]).columns)
+    st.session_state.featuresone = tuple(
+        data.drop(["manufacturer_name"], axis=1).columns)
 
 if 'featurestwo' not in st.session_state:
     st.session_state.featurestwo = tuple(data.columns)
@@ -31,8 +32,7 @@ with tab1:
     x = data[st.session_state.featureone]
     st.info("На графике мы можем увидеть количественную характеристику значений каждого отдельно взятого признака относительно целевого.")
     fig, ax = plt.subplots(figsize=(10, 10))
-    sns.histplot(data, x=st.session_state.featureone,
-                 hue='price_usd', multiple="stack")
+    sns.histplot(data, x=st.session_state.featureone, multiple="stack")
     plt.xlabel(st.session_state.featureone)
     plt.ylabel("Количество")
     st.pyplot(fig)

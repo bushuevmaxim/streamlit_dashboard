@@ -2,6 +2,7 @@ import joblib
 import numpy as np
 import streamlit as st
 import pandas as pd
+from encoder import CategoricalEncoder
 st.set_page_config(layout="centered")
 st.title("Получение предсказания")
 left, right = st.columns(2)
@@ -30,15 +31,19 @@ feature_7 = st.checkbox('feature_7')
 feature_8 = st.checkbox('feature_8')
 feature_9 = st.checkbox('feature_9')
 button_click = st.button("Predict", )
-model = st.selectbox(
-    "Модель", ["Bagging Classifier", "Decision Tree", "Neural Network"])
-
 if button_click:
     row = np.array(
-        [[False.astype(np.bool), manufacturer_name, model_name, transmission, odometer_value, year_produced, engine_type, engine_type, engine_capacity, body_type, has_warranty,
-          state,  drivetrain, number_of_photos, feature_0, feature_1, feature_2,  feature_3, feature_4, feature_5, feature_6, feature_7, feature_8, feature_9]])
-    # dataframe_test = pd.DataFrame(
-    #     row, columns=data.drop(["price_usd"], axis=1).columns)
-    # pipeline = joblib.load(f"models/ridge.pkl")
-    # pred = pipeline.predict(dataframe_test)
-    print(row)
+        [[manufacturer_name, model_name, transmission, odometer_value, year_produced, engine_type, engine_type, engine_capacity, body_type, has_warranty,
+          state,  drivetrain, number_of_photos, feature_0, feature_1, feature_2,  feature_3, feature_4, feature_5, feature_6, feature_7, feature_8, feature_9]]).astype(object)
+    dataframe_test = pd.DataFrame(
+        row, columns=data.drop(["price_usd"], axis=1).columns)
+    dataframe_test["has_warranty"] = dataframe_test["has_warranty"].astype(
+        bool)
+
+    for i in range(10):
+        dataframe_test[f'feature_{i}'] = (
+            dataframe_test[f'feature_{i}']).astype(bool)
+
+    pipeline = joblib.load(f"models/ridge.pkl")
+    pred = pipeline.predict(dataframe_test)
+    st.info(*pred)
