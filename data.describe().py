@@ -37,6 +37,7 @@ with c3:
 
     """)
 
-data = pd.read_csv("data/csgo_task.csv")
+data = pd.read_csv("preproc.csv")
 data.dropna(inplace=True)
 st.session_state["data"] = data
+st.write(data)
